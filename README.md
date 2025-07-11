@@ -1,12 +1,51 @@
-# React + Vite
+# 🚀 VAR Frontend Dashboard — Smart India Hackathon 2025
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An advanced Search & Rescue (SAR) dashboard built using React + Vite for mission planning, telemetry visualization, simulation configuration, offline data management, and scenario handling.
 
-Currently, two official plugins are available:
+![UI Preview](./public/preview.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 🌐 Interactive Landing Page with animated visuals
+- 📡 Real-time Telemetry Input & Preview
+- 🗺️ 3D Map Renderer using CesiumJS
+- ⚙️ Simulation Configuration Panel with adjustable parameters
+- 🚁 Asset Search with Filtering & Animated Cards
+- 🧠 Scenario Manager with Tabs, Comparison, and Management
+- 📊 Mission Report with charts and Export options
+- 🔌 Offline Data Manager (Import/Export JSON, Clear Local)
+- 👥 Collaboration Panel (Coming Soon)
+- 🎨 Fully Responsive & SIH-Level Gradient UI
+- ⚡ Built with Vite for lightning-fast development
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+| Tech             | Description                           |
+|------------------|---------------------------------------|
+| React + Vite     | Frontend Framework                    |
+| TailwindCSS      | Utility-first CSS framework           |
+| CesiumJS         | 3D globe rendering and geospatial data|
+| Lucide-react     | Icon library                          |
+| Framer Motion    | Animations & Transitions              |
+| Recharts         | Charts and Graphs                     |
+| ShadCN UI        | Beautiful accessible components       |
+| React Router DOM | Routing                               |
+
+## 📁 Folder Structure
+
+```bash
+src/
+├── Components/
+│   └── ui/            # Shadcn UI components (button, input, etc.)
+├── assets/            # Images, SVGs, icons
+├── LandingPage.jsx
+├── TelemetryInputPage.jsx
+├── MapRenderPage.jsx
+├── SimulationConfigPage.jsx
+├── SearchAssetsPage.jsx
+├── ScenarioManagerPage.jsx
+├── MissionReportPage.jsx
+├── OfflineManagerPage.jsx
+├── CollaborationPage.jsx
+├── App.jsx
+└── index.css

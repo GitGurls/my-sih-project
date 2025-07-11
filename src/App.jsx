@@ -14,9 +14,18 @@ import MissionReportPage from "./MissionReportPage";
 import CollaborationPage from "./CollaborationPage";
 import OfflineManagerPage from "./OfflineManagerPage";
 import SettingPage from "./SettingPage";
-// Future Modules – Enable as needed
 
+// Layout
 import NavigationSidebar from "./Components/NavigationSidebar";
+
+function AppLayout({ children }) {
+  return (
+    <div className="flex">
+      <NavigationSidebar />
+      <div className="flex-1 p-4">{children}</div>
+    </div>
+  );
+}
 
 function App() {
   const [telemetryData, setTelemetryData] = useState([]);
@@ -37,21 +46,90 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* Landing Page without Sidebar */}
         <Route path="/" element={<LandingPage />} />
-        <Route path="/telemetry" element={<TelemetryInputPage />} />
-        <Route path="/map" element={<MapRenderPage />} />
-        <Route path="/chart" element={<DataVisualization data={telemetryData} />} />
-        <Route path="/simulate" element={<SimulationConfigPage />} />
-        <Route path="/assets" element={<SearchAssetsPage />} />
-        <Route path="/scenarios" element={<ScenarioManagerPage />} />
-        <Route path="/report" element={<MissionReportPage />} />
-        <Route path="/collaboration" element={<CollaborationPage />} />
-        <Route path="/offline" element={<OfflineManagerPage />} />
-        <Route path="/setting" element={<SettingPage />} />
-        <Route path="/navigation" element={<NavigationSidebar />} />
 
-
-        {/* Future Routes */}
+        {/* All other routes inside layout */}
+        <Route
+          path="/telemetry"
+          element={
+            <AppLayout>
+              <TelemetryInputPage />
+            </AppLayout>
+          }
+        />
+        <Route
+          path="/map"
+          element={
+            <AppLayout>
+              <MapRenderPage />
+            </AppLayout>
+          }
+        />
+        <Route
+          path="/chart"
+          element={
+            <AppLayout>
+              <DataVisualization data={telemetryData} />
+            </AppLayout>
+          }
+        />
+        <Route
+          path="/simulate"
+          element={
+            <AppLayout>
+              <SimulationConfigPage />
+            </AppLayout>
+          }
+        />
+        <Route
+          path="/assets"
+          element={
+            <AppLayout>
+              <SearchAssetsPage />
+            </AppLayout>
+          }
+        />
+        <Route
+          path="/scenarios"
+          element={
+            <AppLayout>
+              <ScenarioManagerPage />
+            </AppLayout>
+          }
+        />
+        <Route
+          path="/report"
+          element={
+            <AppLayout>
+              <MissionReportPage />
+            </AppLayout>
+          }
+        />
+        <Route
+          path="/collaboration"
+          element={
+            <AppLayout>
+              <CollaborationPage />
+            </AppLayout>
+          }
+        />
+        <Route
+          path="/offline"
+          element={
+            <AppLayout>
+              <OfflineManagerPage />
+            </AppLayout>
+          }
+        />
+        <Route
+          path="/setting"
+          element={
+            <AppLayout>
+              <SettingPage />
+            </AppLayout>
+          }
+        />
       </Routes>
     </Router>
   );

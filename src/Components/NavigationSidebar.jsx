@@ -8,6 +8,8 @@ import {
   BarChart3,
   Settings,
   Rocket,
+  Layers,
+  Database
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -16,6 +18,8 @@ const tabs = [
   { name: "Telemetry", icon: SlidersHorizontal, path: "/telemetry" },
   { name: "Map View", icon: MapPin, path: "/map" },
   { name: "Charts", icon: BarChart3, path: "/chart" },
+  { name: "Scenarios", icon: Layers, path: "/scenarios" },           
+  { name: "Offline Manager", icon: Database, path: "/offline" },     
   { name: "Settings", icon: Settings, path: "/setting" },
 ];
 
@@ -39,7 +43,6 @@ const NavigationSidebar = () => {
           >
             <Icon className="w-5 h-5" />
             <span className="font-medium text-sm">{name}</span>
-            {/* Glowing active indicator */}
             {path === location.pathname && (
               <motion.div
                 layoutId="activeTab"

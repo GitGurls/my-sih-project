@@ -1,14 +1,9 @@
 
-
 import React, { useState } from "react";
-import { Card, CardContent } from "@/Components/ui/card";
 import { Button } from "@/Components/ui/button";
-import { Switch } from "@/Components/ui/switch";
 import { Slider } from "@/Components/ui/slider";
-import { Settings2, Wind, Fuel, ArrowDownUp } from "lucide-react";
-import { Label } from "@/Components/ui/label";
-import { motion } from "framer-motion";
-import { toast } from "sonner";
+import { Switch } from "@/Components/ui/switch";
+import { Sliders, Rocket, RotateCcw } from "lucide-react";
 
 export default function SimulationConfigPage() {
   const [windSpeed, setWindSpeed] = useState(20);
@@ -16,102 +11,88 @@ export default function SimulationConfigPage() {
   const [descentRate, setDescentRate] = useState(50);
   const [useBayesian, setUseBayesian] = useState(false);
 
-  const handleReset = () => {
-    setWindSpeed(20);
-    setFuelLevel(70);
-    setDescentRate(50);
-    setUseBayesian(false);
-    toast.success("Simulation settings have been reset.");
-  };
-
-  const handleRun = () => {
-    const config = {
-      windSpeed,
-      fuelLevel,
-      descentRate,
-      useBayesian,
-    };
-
-    // Store to localStorage or log it
-    localStorage.setItem("simulationConfig", JSON.stringify(config));
-
-    toast.success("Simulation started with current configuration!");
-    console.log("Running simulation with config:", config);
-  };
-
   return (
-    <div className="p-6 md:p-10 max-w-3xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h2 className="text-3xl font-semibold flex items-center gap-2 mb-6">
-          <Settings2 className="text-blue-600" /> Simulation Configuration
-        </h2>
+    <div className="flex flex-col md:flex-row min-h-screen bg-gradient-to-br from-white to-blue-50">
+      <div className="w-full p-6">
+        <h1 className="text-3xl font-bold text-center mb-8 flex items-center justify-center gap-2">
+          <Sliders className="text-blue-600" />
+          Simulation Configuration
+        </h1>
 
-        <Card className="rounded-2xl shadow-md backdrop-blur bg-white/60 dark:bg-gray-900/40">
-          <CardContent className="space-y-6 p-6">
-            {/* Wind Speed */}
-            <div>
-              <Label className="flex items-center gap-2 font-medium">
-                <Wind className="w-4 h-4 text-blue-500" /> Wind Speed: {windSpeed} km/h
-              </Label>
-              <Slider
-                value={[windSpeed]}
-                onValueChange={([v]) => setWindSpeed(v)}
-                max={100}
-                step={1}
-              />
-            </div>
+        <div className="bg-white/30 backdrop-blur-md shadow-2xl max-w-2xl mx-auto p-8 rounded-2xl border border-gray-300">
+          <div className="mb-6">
+            <label className="text-blue-700 font-semibold mb-2 block">
+              🌬️ Wind Speed: {windSpeed} km/h
+            </label>
+            <Slider
+              min={0}
+              max={100}
+              value={[windSpeed]}
+              onValueChange={([v]) => setWindSpeed(v)}
+              className="accent-blue-600 hover:accent-cyan-400"
+            />
+          </div>
 
-            {/* Fuel Level */}
-            <div>
-              <Label className="flex items-center gap-2 font-medium">
-                <Fuel className="w-4 h-4 text-green-500" /> Fuel Level: {fuelLevel}%
-              </Label>
-              <Slider
-                value={[fuelLevel]}
-                onValueChange={([v]) => setFuelLevel(v)}
-                max={100}
-                step={1}
-              />
-            </div>
+          <div className="mb-6">
+            <label className="text-green-700 font-semibold mb-2 block">
+              🛢️ Fuel Level: {fuelLevel}%
+            </label>
+            <Slider
+              min={0}
+              max={100}
+              value={[fuelLevel]}
+              onValueChange={([v]) => setFuelLevel(v)}
+              className="accent-green-600 hover:accent-lime-400"
+            />
+          </div>
 
-            {/* Descent Rate */}
-            <div>
-              <Label className="flex items-center gap-2 font-medium">
-                <ArrowDownUp className="w-4 h-4 text-red-500" /> Descent Rate: {descentRate} m/min
-              </Label>
-              <Slider
-                value={[descentRate]}
-                onValueChange={([v]) => setDescentRate(v)}
-                max={100}
-                step={1}
-              />
-            </div>
+          <div className="mb-6">
+            <label className="text-red-600 font-semibold mb-2 block">
+              ⬇️ Descent Rate: {descentRate} m/min
+            </label>
+            <Slider
+              min={0}
+              max={100}
+              value={[descentRate]}
+              onValueChange={([v]) => setDescentRate(v)}
+              className="accent-red-500 hover:accent-pink-400"
+            />
+          </div>
 
-            {/* Bayesian Toggle */}
-            <div className="flex items-center justify-between">
-              <Label className="text-sm font-medium">Use Bayesian Model</Label>
-              <Switch checked={useBayesian} onCheckedChange={setUseBayesian} />
-            </div>
-
-            {/* Buttons */}
-            <div className="flex gap-4 pt-4">
-              <Button
-                className="bg-blue-600 hover:bg-blue-700 text-white"
-                onClick={handleRun}
+          <div className="flex items-center justify-between mb-8">
+            <span className="text-gray-700 font-medium text-sm">
+              Use Bayesian Model
+              <span
+                title="Statistical model to improve accuracy"
+                className="ml-1 cursor-help text-blue-500"
               >
-                🚀 Run Simulation
-              </Button>
-              <Button variant="outline" onClick={handleReset}>
-                🔁 Reset
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </motion.div>
+                ℹ️
+              </span>
+            </span>
+            <Switch
+              checked={useBayesian}
+              onCheckedChange={() => setUseBayesian(!useBayesian)}
+            />
+          </div>
+
+          <div className="flex justify-center gap-4">
+            <Button
+              className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 py-2 rounded-xl font-semibold shadow-md hover:scale-105 hover:shadow-lg transition-all"
+              onClick={() => console.log("Run Simulation")}
+            >
+              <Rocket className="mr-2" /> Run Simulation
+            </Button>
+
+            <Button
+              variant="outline"
+              className="text-blue-600 border border-blue-400 px-6 py-2 rounded-xl font-semibold hover:bg-blue-50 transition-all"
+              onClick={() => console.log("Reset Simulation")}
+            >
+              <RotateCcw className="mr-2" /> Reset
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

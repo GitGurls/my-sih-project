@@ -1,4 +1,4 @@
-# 🚀 VAR Frontend Dashboard — Smart India Hackathon 2025
+# 🚀 VAR Dashboard — Smart India Hackathon 2025
 
 An advanced Search & Rescue (SAR) dashboard built using React + Vite for mission planning, telemetry visualization, simulation configuration, offline data management, and scenario handling.
 
